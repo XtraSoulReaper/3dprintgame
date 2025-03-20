@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Print Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Your 3D Printing Business</h1>
+        
+        <div id="businessLevel">You are currently in a small 3D print setup.</div>
+
+        <div class="printer-bench">
+            <!-- Printer slots with names above them -->
+            <div class="printer" id="printer1">
+                <div class="printer-name">CrealEnder 100</div>
+                <div class="printer-info">Bed: 220x220x250mm | $200</div>
+            </div>
+            <div class="printer" id="printer2">
+                <div class="printer-name">Pruso Mini-K</div>
+                <div class="printer-info">Bed: 180x180x200mm | $350</div>
+            </div>
+            <div class="printer" id="printer3">
+                <div class="printer-name">BumbleLab P1 Lite</div>
+                <div class="printer-info">Bed: 256x256x256mm | $500</div>
+            </div>
+            <!-- Additional printers can be added dynamically as the business grows -->
+        </div>
+
+        <div class="controls">
+            <button onclick="buyPrinter(1)">Buy Printer 1</button>
+            <button onclick="buyPrinter(2)">Buy Printer 2</button>
+            <button onclick="buyPrinter(3)">Buy Printer 3</button>
+            <!-- Add more buttons for more printers as needed -->
+        </div>
+
+        <div class="stats">
+            <p>Money: <span id="money">500</span></p>
+            <p>Storage: <span id="storage">50</span> units</p>
+        </div>
+
+        <div id="nextUpgrade">
+            <button onclick="nextUpgrade()">Upgrade to bigger business setup</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
