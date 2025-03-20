@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.game-container {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.printer-bench {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.printer {
+    width: 150px;
+    height: 250px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.printer-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.printer-info {
+    font-size: 14px;
+    color: #555;
+}
+
+.controls {
+    margin: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.stats {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+#nextUpgrade {
+    margin-top: 20px;
+}
+
+#nextUpgrade button {
+    background-color: #ff5722;
+}
+
+#nextUpgrade button:hover {
+    background-color: #e64a19;
+}
