@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Print Idle Game</title>
+    <title>Advanced 3D Print Idle Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div id="container">
+    <div class="top-bar">
+        <span id="money-info">Money: $500</span>
+        <span id="filament-info">Filament: 1000g</span>
+    </div>
+
+    <!-- Game Action Buttons -->
     <button onclick="openFilamentStore()">Buy Filament</button>
     <button onclick="openPrinterStore()">Printer Store</button>
     <button onclick="showPrinterStorage()">Printer Storage</button>
-    
+
     <!-- Customer Orders Section -->
     <h2>Customer Orders</h2>
     <div id="order-container"></div>
@@ -22,6 +28,7 @@
     <div id="printer-queue"></div>
 
     <!-- Printer Progress Bars -->
+    <h2>Printer Progress</h2>
     <div id="printer-progress-container">
         <div class="printer-progress" id="printer1-progress">
             <p>PrintMaster 300 Progress</p>
@@ -60,6 +67,7 @@
         <div class="printer-item">ProPrint 5000 - $350 <button onclick="buyPrinter('ProPrint 5000', 350)">Buy</button></div>
         <button onclick="closePrinterStore()">Close</button>
     </div>
+
 </div>
 
 <script src="script.js"></script>
