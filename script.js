@@ -2,12 +2,94 @@
 let filament = 1000; // Start with 1kg of filament
 let money = 500; // Start with $500
 let printers = [];
+let printerQueue = [];
+let customerOrders = [];
 let printerProgress = [0, 0]; // Progress for Printer 1 and Printer 2
 
 // Update UI with filament and money info
 function updateUI() {
     document.getElementById('filament-info').innerText = `Filament: ${filament}g`;
     document.getElementById('money-info').innerText = `Money: $${money}`;
+}
+
+// Customer Orders
+function createOrder() {
+    const order = {
+        id: customerOrders.length + 1,
+        quantity: Math.floor(Math.random() * 10) + 1, // Random quantity of prints
+        filamentRequired: Math.floor(Math.random() * 500) + 100, // Random filament requirement
+        patience: Math.floor(Math.random() * 60) + 30, // Random patience (time before they cancel)
+        timeLeft: Math.floor(Math.random() * 60) + 30, // Random time for completion
+        printerType: ['PrintMaster 300', 'ProPrint 5000'][Math.floor(Math.random() * 2)] // Random printer preference
+    };
+    
+    customerOrders.push(order);
+    renderCustomerOrders();
+}
+
+// Render Customer Orders
+function renderCustomerOrders() {
+    const container = document.getElementById('order-container');
+    container.innerHTML = '';
+    customerOrders.forEach(order => {
+        const orderDiv = document.createElement('div');
+        orderDiv.className = 'order-item';
+        orderDiv.innerHTML = `
+            Order #${order.id} - Quantity: ${order.quantity}, Filament: ${order.filamentRequired}g, Time Left: ${order.timeLeft}s
+            <button onclick="acceptOrder(${order.id})">Accept</button>
+        `;
+        container.appendChild(orderDiv);
+    });
+}
+
+// Accept Order
+function acceptOrder(orderId) {
+    const order = customerOrders.find(o => o.id === orderId);
+    if (order) {
+        const printer = printers.find(p => p.name === order.printerType);
+        if (printer) {
+            printerQueue.push({
+                orderId: order.id,
+                printer: printer,
+                filamentRequired: order.filamentRequired,
+                timeLeft: order.timeLeft
+            });
+            alert(`Order accepted! Printing on ${printer.name}`);
+            renderPrinterQueue();
+            startPrinterJob();
+        }
+    }
+}
+
+// Printer Queue
+function renderPrinterQueue() {
+    const container = document.getElementById('printer-queue');
+    container.innerHTML = '';
+    printerQueue.forEach(job => {
+        const jobDiv = document.createElement('div');
+        jobDiv.className = 'order-item';
+        jobDiv.innerHTML = `
+            Order #${job.orderId} - Filament: ${job.filamentRequired}g, Time Left: ${job.timeLeft}s
+        `;
+        container.appendChild(jobDiv);
+    });
+}
+
+// Start a Printer Job
+function startPrinterJob() {
+    if (printerQueue.length > 0) {
+        const job = printerQueue[0];
+        let interval = setInterval(() => {
+            job.timeLeft--;
+            if (job.timeLeft <= 0) {
+                clearInterval(interval);
+                printerQueue.shift();
+                alert(`Order #${job.orderId} completed!`);
+                renderPrinterQueue();
+                updateUI();
+            }
+        }, 1000);
+    }
 }
 
 // Filament purchase
@@ -39,35 +121,10 @@ function buyPrinter(printerName, price) {
     }
 }
 
-// Open Filament Store
-function openFilamentStore() {
-    document.getElementById("filament-popup").style.display = "block";
-}
-
-// Close Filament Store
-function closeFilamentStore() {
-    document.getElementById("filament-popup").style.display = "none";
-}
-
-// Open Printer Store
-function openPrinterStore() {
-    document.getElementById("printer-store-popup").style.display = "block";
-}
-
-// Close Printer Store
-function closePrinterStore() {
-    document.getElementById("printer-store-popup").style.display = "none";
-}
-
 // Show Printer Storage
 function showPrinterStorage() {
     document.getElementById("printer-storage-popup").style.display = "block";
     updatePrinterStorage();
-}
-
-// Close Printer Storage
-function closePrinterStorage() {
-    document.getElementById("printer-storage-popup").style.display = "none";
 }
 
 // Update Printer Storage UI
@@ -96,29 +153,6 @@ function sellPrinter(index) {
     updateUI();
 }
 
-// Printer Progress Simulation
-function startPrintJob(printerIndex) {
-    if (filament >= 50) {
-        filament -= 50; // Use 50g filament
-        alert(`Started printing on ${printers[printerIndex].name}`);
-        printProgress(printerIndex);
-    } else {
-        alert("Not enough filament!");
-    }
-}
-
-// Simulate printing progress
-function printProgress(printerIndex) {
-    let interval = setInterval(() => {
-        if (printerProgress[printerIndex] < 100) {
-            printerProgress[printerIndex]++;
-            document.getElementById(`printer${printerIndex + 1}-progress-bar`).style.width = printerProgress[printerIndex] + '%';
-        } else {
-            clearInterval(interval);
-            alert(`Printing on ${printers[printerIndex].name} is complete!`);
-        }
-    }, 100);
-}
-
 // Initial UI update
 updateUI();
+createOrder();
