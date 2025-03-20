@@ -3,49 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Print Game</title>
+    <title>3D Print Idle Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>Your 3D Printing Business</h1>
-        
-        <div id="businessLevel">You are currently in a small 3D print setup.</div>
 
-        <div class="printer-bench">
-            <!-- Printer slots with names above them -->
-            <div class="printer" id="printer1">
-                <div class="printer-name">CrealEnder 100</div>
-                <div class="printer-info">Bed: 220x220x250mm | $200</div>
+<div id="container">
+    <!-- Buttons -->
+    <button onclick="openFilamentStore()">Buy Filament</button>
+    <button onclick="openPrinterStore()">Printer Store</button>
+    <button onclick="showPrinterStorage()">Printer Storage</button>
+
+    <!-- Printer Progress Bars -->
+    <div id="printer-progress-container">
+        <div class="printer-progress" id="printer1-progress">
+            <p>PrintMaster 300 Progress</p>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="printer1-progress-bar"></div>
             </div>
-            <div class="printer" id="printer2">
-                <div class="printer-name">Pruso Mini-K</div>
-                <div class="printer-info">Bed: 180x180x200mm | $350</div>
+        </div>
+        <div class="printer-progress" id="printer2-progress">
+            <p>ProPrint 5000 Progress</p>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="printer2-progress-bar"></div>
             </div>
-            <div class="printer" id="printer3">
-                <div class="printer-name">BumbleLab P1 Lite</div>
-                <div class="printer-info">Bed: 256x256x256mm | $500</div>
-            </div>
-            <!-- Additional printers can be added dynamically as the business grows -->
-        </div>
-
-        <div class="controls">
-            <button onclick="buyPrinter(1)">Buy Printer 1</button>
-            <button onclick="buyPrinter(2)">Buy Printer 2</button>
-            <button onclick="buyPrinter(3)">Buy Printer 3</button>
-            <!-- Add more buttons for more printers as needed -->
-        </div>
-
-        <div class="stats">
-            <p>Money: <span id="money">500</span></p>
-            <p>Storage: <span id="storage">50</span> units</p>
-        </div>
-
-        <div id="nextUpgrade">
-            <button onclick="nextUpgrade()">Upgrade to bigger business setup</button>
         </div>
     </div>
 
-    <script src="game.js"></script>
+    <!-- Printer Storage Popup -->
+    <div id="printer-storage-popup" class="popup">
+        <h2>Printer Storage</h2>
+        <div id="printer-storage"></div>
+        <button onclick="closePrinterStorage()">Close</button>
+    </div>
+
+    <!-- Filament Store Popup -->
+    <div id="filament-popup" class="popup">
+        <h2>Filament Store</h2>
+        <div class="filament-item">1kg - $44.95 <button onclick="buyFilament(44.95, 1000)">Buy</button></div>
+        <div class="filament-item">500g - $22.48 <button onclick="buyFilament(22.48, 500)">Buy</button></div>
+        <div class="filament-item">250g - $11.24 <button onclick="buyFilament(11.24, 250)">Buy</button></div>
+        <button onclick="closeFilamentStore()">Close</button>
+    </div>
+
+    <!-- Printer Store Popup -->
+    <div id="printer-store-popup" class="popup">
+        <h2>Printer Store</h2>
+        <div class="printer-item">PrintMaster 300 - $200 <button onclick="buyPrinter('PrintMaster 300', 200)">Buy</button></div>
+        <div class="printer-item">ProPrint 5000 - $350 <button onclick="buyPrinter('ProPrint 5000', 350)">Buy</button></div>
+        <button onclick="closePrinterStore()">Close</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
