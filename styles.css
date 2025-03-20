@@ -1,31 +1,16 @@
-/* Printer Queue & Order Styles */
-#order-container {
-    margin: 20px;
-    padding: 10px;
-    border: 1px solid #444;
+body {
+    font-family: Arial, sans-serif;
     background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
-#printer-queue {
+#container {
     margin: 20px;
-    padding: 10px;
-    border: 1px solid #444;
-    background-color: #333;
+    padding: 20px;
 }
 
-.order-item {
-    padding: 10px;
-    background-color: #444;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    color: white;
-}
-
-.order-item button {
-    margin-left: 10px;
-}
-
-/* Update buttons to make them more interactive */
 button {
     padding: 12px;
     margin: 5px;
@@ -34,6 +19,7 @@ button {
     border-radius: 5px;
     color: white;
     font-size: 16px;
+    cursor: pointer;
 }
 
 button:hover {
@@ -58,4 +44,56 @@ button:hover {
     border-radius: 5px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     transition: width 0.5s ease-in-out;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+}
+
+.popup button {
+    background-color: #f44336;
+    margin-top: 10px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #2e2e2e;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Order and Queue Section */
+#order-container, #printer-queue {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #444;
+    border: 1px solid #555;
+}
+
+.order-item, .printer-item {
+    padding: 10px;
+    background-color: #555;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.order-item button {
+    margin-left: 10px;
+}
+
+.printer-item button {
+    background-color: #2196F3;
 }
