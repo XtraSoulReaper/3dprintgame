@@ -1,83 +1,96 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Global Layout */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
-.game-container {
-    max-width: 800px;
-    margin: 20px auto;
-    text-align: center;
-}
-
-.printer-bench {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-}
-
-.printer {
-    width: 150px;
-    height: 250px;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
+#container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-}
-
-.printer-name {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.printer-info {
-    font-size: 14px;
-    color: #555;
-}
-
-.controls {
-    margin: 20px;
+    padding-top: 20px;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px;
     margin: 5px;
-    font-size: 16px;
-    cursor: pointer;
     background-color: #4CAF50;
-    color: white;
     border: none;
     border-radius: 5px;
+    color: white;
+    font-size: 16px;
 }
 
 button:hover {
     background-color: #45a049;
 }
 
-.stats {
-    margin-top: 20px;
+.popup {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    background-color: #444;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.popup h2 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+/* Printer Progress Bar */
+#printer-progress-container {
+    position: relative;
+    top: 20px;
+}
+
+.printer-progress {
+    margin: 20px 0;
     font-size: 18px;
-    color: #333;
+    color: #fff;
 }
 
-#nextUpgrade {
-    margin-top: 20px;
+.progress-bar {
+    width: 300px;
+    height: 30px;
+    background: #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-top: 10px;
 }
 
-#nextUpgrade button {
-    background-color: #ff5722;
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    width: 0%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: width 0.5s ease-in-out;
 }
 
-#nextUpgrade button:hover {
-    background-color: #e64a19;
+/* Filament Store */
+#filament-popup {
+    display: none;
+}
+
+.filament-item {
+    padding: 5px;
+    margin: 10px 0;
+}
+
+/* Printer Store */
+#printer-store-popup {
+    display: none;
+}
+
+.printer-item {
+    margin: 10px;
 }
