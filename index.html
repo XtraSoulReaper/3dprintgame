@@ -3,58 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Print Tycoon</title>
-    <link rel="stylesheet" href="style.css">
+    <title>3D Printing Tycoon</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <h1>3D Print Tycoon</h1>
-        <div class="stats">
-            <span id="money-info">Money: $500</span>
-            <span id="filament-info">Filament: 1000g</span>
-        </div>
-    </div>
-
     <div class="container">
-        <div class="orders">
-            <h2>Customer Orders</h2>
-            <ul id="order-list"></ul>
+        <h1>3D Printing Tycoon</h1>
+
+        <div class="stats">
+            <p>Money: <span id="money">$500</span></p>
+            <p>Filament: <span id="filament">1000g</span></p>
         </div>
 
-        <div class="printers">
-            <h2>Your Printers</h2>
-            <div id="printer-storage"></div>
+        <div class="controls">
+            <button onclick="buyFilament(100)">Buy 100g Filament ($10)</button>
+            <button onclick="openPrinterShop()">Buy Printer</button>
+            <button onclick="openPrintMenu()">Choose Print</button>
         </div>
 
-        <div class="actions">
-            <button onclick="openPrinterStore()">Buy Printer</button>
-            <button onclick="openFilamentStore()">Buy Filament</button>
-            <button onclick="showPrinterStorage()">Manage Printers</button>
-            <button onclick="showPrintStorage()">Print Storage</button>
+        <div id="printers">
+            <h2>Owned Printers</h2>
+            <ul id="printerList"></ul>
+        </div>
+
+        <div id="printQueue">
+            <h2>Active Prints</h2>
+            <ul id="activePrints"></ul>
         </div>
     </div>
 
-    <!-- Popups -->
-    <div id="printer-store-popup" class="popup">
+    <div id="popup" class="popup">
         <div class="popup-content">
-            <h2>Printer Store</h2>
-            <div id="printer-store"></div>
-            <button onclick="closePrinterStore()">Close</button>
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2 id="popup-title"></h2>
+            <div id="popup-body"></div>
         </div>
     </div>
 
-    <div id="filament-popup" class="popup">
-        <div class="popup-content">
-            <h2>Filament Store</h2>
-            <button onclick="buyFilament(44.95, 1000)">1kg - $44.95</button>
-            <button onclick="buyFilament(22.48, 500)">500g - $22.48</button>
-            <button onclick="buyFilament(11.24, 250)">250g - $11.24</button>
-            <button onclick="closeFilamentStore()">Close</button>
-        </div>
-    </div>
-
-    <script src="printers.js"></script>
-    <script src="orders.js"></script>
-    <script src="game.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
